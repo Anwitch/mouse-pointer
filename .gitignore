@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+mouse_pointer.log
+config.json
+build/
+dist/
+*.spec
