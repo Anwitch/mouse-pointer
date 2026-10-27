@@ -27,7 +27,14 @@ Khusus Windows 10/11.
 
 ## Instal
 
-Butuh [Python 3.10+](https://www.python.org/downloads/).
+**Cara termudah:** unduh `MousePointer.exe` dari
+[Releases](https://github.com/Anwitch/mouse-pointer/releases/latest), simpan di
+folder mana saja, lalu klik dua kali. Tidak perlu Python. Karena belum
+ditandatangani, Windows SmartScreen mungkin memperingatkan saat pertama dibuka:
+pilih **Info lebih lanjut > Tetap jalankan**. `config.json` dan log disimpan di
+folder yang sama dengan `.exe`-nya.
+
+**Dari kode sumber** (butuh [Python 3.10+](https://www.python.org/downloads/)):
 
 ```
 git clone https://github.com/Anwitch/mouse-pointer.git
@@ -103,6 +110,16 @@ python -m unittest discover -s tests -t .
 ```
 
 Error dicatat di `mouse_pointer.log`.
+
+Build `.exe`:
+
+```
+pip install pyinstaller
+python -m PyInstaller --onefile --windowed --name MousePointer --icon mouse_pointer.ico ^
+  --exclude-module numpy --exclude-module PIL.ImageQt --exclude-module PIL.ImageTk ^
+  --exclude-module ssl --exclude-module _ssl --exclude-module hashlib ^
+  --exclude-module unittest mouse_pointer.pyw
+```
 
 ## Lisensi
 

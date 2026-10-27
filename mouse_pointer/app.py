@@ -2,6 +2,7 @@
 import ctypes
 import json
 import logging
+import sys
 import threading
 from pathlib import Path
 
@@ -16,7 +17,10 @@ from .overlay import SOUNDS, TimerOverlay
 from .router import Router
 from .timer import RUNNING, WARNING
 
-ROOT = Path(__file__).resolve().parent.parent
+# Versi .exe (PyInstaller) membongkar kode ke folder sementara; config dan log
+# disimpan di samping .exe-nya.
+ROOT = (Path(sys.executable).parent if getattr(sys, "frozen", False)
+        else Path(__file__).resolve().parent.parent)
 CONFIG_FILE = ROOT / "config.json"
 LOG_FILE = ROOT / "mouse_pointer.log"
 DEFAULTS = {"device": "", "wheel_interval": 0.25, "start_active": True,
